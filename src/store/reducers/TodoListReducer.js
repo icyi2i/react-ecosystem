@@ -1,12 +1,12 @@
-import { CREATE_TODO, REMOVE_TODO } from "../actions/TodoListActions"
+import { CREATE_TODO, REMOVE_TODO, TOGGLE_TODO_COMPLETED } from "../actions/TodoListActions"
 import { v4 } from "uuid"
 
 export const todos = (state = [], action) => {
     const { type , payload } = action
-
+    let content, id
     switch (type) {
         case CREATE_TODO:
-            const { content } = payload
+            ({ content } = payload)
             const newTodo = {
                 id: v4(),
                 content: content,
@@ -14,8 +14,13 @@ export const todos = (state = [], action) => {
             }
             return state.concat(newTodo)
         case REMOVE_TODO:
-            const { id } = payload
+            ({ id } = payload)
             return state.filter(todo => todo.id !== id)
+        case TOGGLE_TODO_COMPLETED:
+            ({ id } = payload)
+            return state.map(todo => (
+                todo.id === id ? {...todo, completed:!todo.completed}: todo
+                ))
         default:
             return state
     }

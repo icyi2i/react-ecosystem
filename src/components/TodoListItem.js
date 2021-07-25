@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
 const TodoListItem = (props) => {
-    const [completed, setCompleted] = useState(props.completed)
     return (
-        <div className={"todo-list-item " + (completed ? "completed": "")}>
+        <div className={"todo-list-item " + (props.completed ? "completed": "")}>
             <input id={"check_" + props.id}
                 type="checkbox"
-                checked={completed}
-                onChange={()=> setCompleted(!completed)}/>
+                checked={props.completed}
+                onChange={()=> props.onToggleCompleted(props.id)}/>
             <label htmlFor={"check_" + props.id}>
                 {props.content}
             </label>

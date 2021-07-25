@@ -1,9 +1,41 @@
+html, body {
+    margin: 0;
+    overflow: auto;
+}
+body {
+    background: linear-gradient(to top left, #ff6969, #5fafff);
+    min-height: 100vh;
+}
+main#root {
+    padding: 4rem 0;
+    margin: 0;
+}
+
 .App {
-    margin: 1rem;
+    width: 90%;
+    min-height: auto;
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid whitesmoke;
+    border-radius: 0.5rem;
+    background: linear-gradient(to top right, #fff8, #fff2, #fff4);
     font-family: 'Segoe UI', 'Helvetica', Tahoma, Geneva, Verdana, sans-serif;
     color: #222222;
 }
 
 *{
     box-sizing: border-box;
+}
+
+
+@media only screen and (min-width: 540px) {
+    .App {
+        width: 75%;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .App {
+        width: 50%;
+    }
 }

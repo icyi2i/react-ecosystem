@@ -4,6 +4,7 @@ import { createTodo } from "../store/actions/TodoListActions"
 
 const TodoListItemForm = (props) => {
     const [todoContent, setTodoContent] = useState(props.content ? props.content : "")
+
     return (
         <div className="new-item-form">
             <input
@@ -11,14 +12,21 @@ const TodoListItemForm = (props) => {
                 className="new-item-input"
                 placeholder="Type new content here"
                 value={todoContent}
-                onChange={(e) => setTodoContent(e.target.value)} />
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        props.onCreatePressed(todoContent)
+                        setTodoContent("")
+                    }
+                }}
+                onChange={(e) => setTodoContent(e.target.value)}
+                />
             <button
                 type="button"
                 className="new-item-button"
                 onClick={() => {
                     props.onCreatePressed(todoContent)
                     setTodoContent("")
-                    }}>
+                }}>
                 Create
             </button>
         </div>

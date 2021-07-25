@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from "react-redux"
 import TodoListItem from "./TodoListItem"
 import TodoListItemForm from "./TodoListItemForm"
+import { removeTodo, toggleTodoCompleted } from "../store/actions/TodoListActions"
 
 import "./TodoList.css"
-import { removeTodo } from "../store/actions/TodoListActions"
 
 const TodoList = (props) => {
 
@@ -19,6 +19,7 @@ const TodoList = (props) => {
                         content={todo.content}
                         completed={todo.completed}
                         onRemovePressed={props.onRemovePressed}
+                        onToggleCompleted={props.onToggleCompleted}
                         />
                 )
             }
@@ -30,7 +31,8 @@ const mapStateToProps = state => ({
     todos: state.todos
 })
 const mapDispachToProps = dispatch => ({
-    onRemovePressed: id => dispatch(removeTodo(id))
+    onRemovePressed: id => dispatch(removeTodo(id)),
+    onToggleCompleted: id => dispatch(toggleTodoCompleted(id)),
 })
 
 export default connect(mapStateToProps, mapDispachToProps)(TodoList)

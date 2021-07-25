@@ -9,3 +9,9 @@ export const removeTodo = id => ({
     type: REMOVE_TODO,
     payload: { id }
 })
+
+export const TOGGLE_TODO_COMPLETED = "TOGGLE_TODO_COMPLETED"
+export const toggleTodoCompleted = id => ({
+    type: TOGGLE_TODO_COMPLETED,
+    payload: { id }
+})
